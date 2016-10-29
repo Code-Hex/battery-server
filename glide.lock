@@ -1,0 +1,43 @@
+hash: da1e16b9f2885c887d6b75464722719fa27a7c44f8607beaea9262642aef42b8
+updated: 2016-10-29T17:11:33.716603239+09:00
+imports:
+- name: github.com/dgrijalva/jwt-go
+  version: 24c63f56522a87ec5339cc3567883f1039378fdb
+- name: github.com/inconshreveable/mousetrap
+  version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+- name: github.com/labstack/echo
+  version: 276394d973b8cdf2569c18ae5dc0edbb5455f8e5
+  subpackages:
+  - context
+  - engine
+  - engine/standard
+  - log
+  - middleware
+- name: github.com/labstack/gommon
+  version: 2d272df536d051e737aea353b86c979d6e88bce0
+  subpackages:
+  - bytes
+  - color
+  - log
+  - random
+- name: github.com/mattn/go-colorable
+  version: 6c903ff4aa50920ca86087a280590b36b3152b9c
+- name: github.com/mattn/go-isatty
+  version: 66b8e73f3f5cda9f96b69efd03dd3d7fc4a5cdb8
+- name: github.com/pkg/errors
+  version: 839d9e913e063e28dfd0e6c7b7512793e0a48be9
+- name: github.com/spf13/cobra
+  version: 6e91dded25d73176bf7f60b40dd7aa1f0bf9be8d
+- name: github.com/spf13/pflag
+  version: 5ccb023bc27df288a957c5e994cd44fd19619465
+- name: github.com/valyala/fasttemplate
+  version: 3b874956e03f1636d171bda64b130f9135f42cff
+- name: golang.org/x/net
+  version: 8b4af36cd21a1f85a7484b49feb7c79363106d8e
+  subpackages:
+  - context
+- name: golang.org/x/sys
+  version: c200b10b5d5e122be351b67af224adc6128af5bf
+  subpackages:
+  - unix
+testImports: []

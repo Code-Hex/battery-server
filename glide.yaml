@@ -1,0 +1,8 @@
+package: github.com/Code-Hex/battery-server
+import:
+- package: github.com/labstack/echo
+  subpackages:
+  - engine/standard
+  - middleware
+- package: github.com/pkg/errors
+- package: github.com/spf13/cobra
