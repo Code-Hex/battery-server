@@ -10,12 +10,12 @@ import (
 )
 
 type BTInfo struct {
-	Percent  int
-	IsPowerd bool
+	Percent   int
+	IsPowered bool
 }
 
 func HealthCheck(c echo.Context) error {
-	return c.String(http.StatusOK, "🍣")
+	return c.String(http.StatusOK, "🍣 ")
 }
 
 // Stream
@@ -26,7 +26,7 @@ func ShowBattery(c echo.Context) error {
 	for {
 		var bt BTInfo
 		var err error
-		bt.Percent, bt.IsPowerd, err = battery.BatteryInfo()
+		bt.Percent, bt.IsPowered, err = battery.BatteryInfo()
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, err)
 		}

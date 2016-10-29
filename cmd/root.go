@@ -47,7 +47,7 @@ func New() *BatteryServer {
 	// Add flags for server mode
 	btserver.command.Flags().StringVarP(&btserver.path, "path", "", "bt-server.log", "log output path")
 	btserver.command.Flags().StringVarP(&btserver.port, "port", "p", "4000", "port number")
-	btserver.command.Flags().BoolVarP(&btserver.logMode, "logger", "", false, "logger mode")
+	btserver.command.Flags().BoolVarP(&btserver.logMode, "log", "", false, "log mode")
 
 	// Add sub commands
 	btserver.command.AddCommand(CliNew().CliCmdNew())
@@ -77,6 +77,7 @@ func (b *BatteryServer) RunServer(cmd *cobra.Command, args []string) error {
 	e.GET("/", route.HealthCheck)
 	e.GET("/battery", route.ShowBattery)
 
+	os.Stderr.Write([]byte("server run localhost:" + b.port + "\n"))
 	e.Run(standard.New(":" + b.port))
 
 	return nil

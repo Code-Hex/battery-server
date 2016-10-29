@@ -40,6 +40,8 @@ int battery(char **status, char **error) {
 }
 */
 import "C"
+
+// https://github.com/Code-Hex/battery/blob/master/cmd/battery/battery_darwin.go
 import (
 	"errors"
 	"unsafe"

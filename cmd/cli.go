@@ -16,6 +16,8 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 
 	"github.com/Code-Hex/battery-server/battery"
 	"github.com/Code-Hex/battery-server/route"
@@ -24,6 +26,7 @@ import (
 )
 
 type Cli struct {
+	isSay   bool
 	command *cobra.Command
 }
 
@@ -32,22 +35,40 @@ func CliNew() *Cli {
 }
 
 func (c *Cli) CliCmdNew() *cobra.Command {
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:   "cli",
 		Short: "battery-server cli mode",
 		Long:  `cli でバッテリー情報を表示するよー`,
 		RunE:  c.GetBatteryInfoCli,
 	}
+
+	cmd.Flags().BoolVarP(&c.isSay, "say", "s", false, "say mode")
+
+	return cmd
 }
 
 func (c *Cli) GetBatteryInfoCli(cmd *cobra.Command, args []string) error {
 	var b route.BTInfo
 	var err error
-	b.Percent, b.IsPowerd, err = battery.BatteryInfo()
+	b.Percent, b.IsPowered, err = battery.BatteryInfo()
 	if err != nil {
 		return errors.Wrapf(err, "Could not get battery info")
 	}
 
-	fmt.Println(b.Percent, b.IsPowerd)
+	now := fmt.Sprintf("バッテリー残量%s%%です。", b.Percent)
+	var status string
+	if b.IsPowered {
+		status = "只今充電中です。"
+	} else {
+		status = "只今充電していません。"
+	}
+	if c.isSay {
+		exec.Command("say", now).Run()
+		exec.Command("say", status).Run()
+	} else {
+		os.Stdout.Write([]byte(now + "\n"))
+		os.Stdout.Write([]byte(status + "\n"))
+	}
+
 	return nil
 }
